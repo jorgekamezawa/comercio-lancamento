@@ -17,6 +17,7 @@ import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 public interface LancamentoMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     Lancamento toDomain(final LancamentoForm form);
 
     LancamentoView toView(final Lancamento domain);
