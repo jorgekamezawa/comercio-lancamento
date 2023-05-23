@@ -1,0 +1,5 @@
+rootProject.name = 'lancamento'
+include 'domain'
+include 'usecase'
+include 'infra'
+
