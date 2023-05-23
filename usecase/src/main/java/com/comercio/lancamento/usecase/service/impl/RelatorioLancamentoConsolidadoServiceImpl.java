@@ -3,7 +3,7 @@ package com.comercio.lancamento.usecase.service.impl;
 import com.comercio.lancamento.domain.entity.Lancamento;
 import com.comercio.lancamento.domain.entity.TipoPagamentoEnum;
 import com.comercio.lancamento.usecase.mapper.LancamentoMapper;
-import com.comercio.lancamento.usecase.model.exception.BadRequestException;
+import com.comercio.lancamento.domain.exception.BadRequestException;
 import com.comercio.lancamento.usecase.model.view.LancamentoConsolidadoView;
 import com.comercio.lancamento.usecase.persistence.LancamentoPersistenceService;
 import com.comercio.lancamento.usecase.service.RelatorioLancamentoConsolidadoService;
