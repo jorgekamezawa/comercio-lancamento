@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: sql/001_create_comercio_schema_and_lancamentos_table.sql
+      relativeToChangeLogFile: true

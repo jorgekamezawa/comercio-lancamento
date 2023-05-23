@@ -1,1 +1,21 @@
-server.port: 8081
+server:
+  port: 8080
+
+spring:
+  application:
+    name: comercio-lancamento
+  liquibase:
+    change-log: 'classpath:db/database-change-log.yaml'
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/comercio'
+    username: root
+    password: root123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true

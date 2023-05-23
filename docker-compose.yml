@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db-postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root123
+      POSTGRES_DB: comercio
+    ports:
+      - "5432:5432"
+    volumes:
+      - comercio_db_data:/var/lib/postgresql/data
+
+volumes:
+  comercio_db_data:
