@@ -4,9 +4,12 @@ import com.comercio.lancamento.domain.entity.Lancamento;
 import com.comercio.lancamento.usecase.mapper.LancamentoMapper;
 import com.comercio.lancamento.usecase.model.form.LancamentoForm;
 import com.comercio.lancamento.usecase.model.view.LancamentoView;
+import com.comercio.lancamento.usecase.model.view.PageableView;
 import com.comercio.lancamento.usecase.persistence.LancamentoPersistenceService;
 import com.comercio.lancamento.usecase.service.LancamentoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,5 +23,11 @@ public class LancamentoServiceImpl implements LancamentoService {
     public LancamentoView create(LancamentoForm form) {
         Lancamento lancamento = lancamentoPersistenceService.save(lancamentoMapper.toDomain(form));
         return lancamentoMapper.toView(lancamento);
+    }
+
+    @Override
+    public PageableView<LancamentoView> findAll(Pageable pageable) {
+        Page<LancamentoView> lancamentoViewPage = lancamentoPersistenceService.findAll(pageable).map(lancamentoMapper::toView);
+        return new PageableView<>(lancamentoViewPage.getContent(), lancamentoViewPage.getTotalElements(), lancamentoViewPage.getSize());
     }
 }
