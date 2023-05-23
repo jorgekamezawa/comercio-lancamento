@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class LancamentoPersistenceServiceImpl implements LancamentoPersistenceService {
@@ -18,13 +21,20 @@ public class LancamentoPersistenceServiceImpl implements LancamentoPersistenceSe
     private final LancamentoPersistenceMapper lancamentoMapper;
 
     @Override
-    public Lancamento save(Lancamento domain) {
+    public Lancamento save(final Lancamento domain) {
         LancamentoEntity entity = lancamentoRepository.save(lancamentoMapper.toEntity(domain));
         return lancamentoMapper.toDomain(entity);
     }
 
     @Override
-    public Page<Lancamento> findAll(Pageable pageable) {
+    public Page<Lancamento> findAll(final Pageable pageable) {
         return lancamentoRepository.findAll(pageable).map(lancamentoMapper::toDomain);
+    }
+
+    @Override
+    public List<Lancamento> findAll(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim) {
+        return lancamentoRepository.findByCreatedAtBetween(dataHoraInicio, dataHoraFim).stream()
+                .map(lancamentoMapper::toDomain)
+                .toList();
     }
 }
