@@ -8,7 +8,6 @@ import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
 
 @Configuration
-@EnableKafka
 public class KafkaTopicsConfig {
 
     @Value("${kafka.topic.create-relatorio-consolidado}")
