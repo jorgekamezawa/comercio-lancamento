@@ -4,13 +4,16 @@ server:
 spring:
   application:
     name: comercio-lancamento
+
   liquibase:
     change-log: 'classpath:db/database-change-log.yaml'
+
   datasource:
     url: 'jdbc:postgresql://localhost:5432/comercio'
     username: root
     password: root123
     driver-class-name: org.postgresql.Driver
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
@@ -19,3 +22,22 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: lancamento-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+      poll-timeout: 3000
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka.topic:
+  create-relatorio-consolidado: create_relatorio_consolidado_lancamentos
+  send-relatorio-consolidado: send_relatorio_consolidado_lancamentos

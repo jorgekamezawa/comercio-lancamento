@@ -1,17 +1,15 @@
 package com.comercio.lancamento.infra.persistence.entity;
 
 import com.comercio.lancamento.domain.entity.TipoPagamentoEnum;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import static org.hibernate.annotations.UuidGenerator.Style.RANDOM;
 
 @Data
 @AllArgsConstructor
@@ -20,8 +18,11 @@ import static org.hibernate.annotations.UuidGenerator.Style.RANDOM;
 @Table(name = "lancamentos", schema = "comercio")
 public class LancamentoEntity {
     @Id
-    @GeneratedValue
-    @UuidGenerator(style = RANDOM)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
     private UUID id;
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
