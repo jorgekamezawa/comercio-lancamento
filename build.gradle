@@ -42,6 +42,8 @@ allprojects {
 		implementation 'org.liquibase:liquibase-core:4.22.0'
 		// KAFKA
 		implementation 'org.springframework.kafka:spring-kafka'
+		// SWAGGER
+		implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
 		// SPRING BOOT TEST
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testImplementation 'org.springframework.kafka:spring-kafka-test'
